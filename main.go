@@ -1,7 +1,18 @@
 package main
 
-import "log"
+import (
+	"github.com/skarekroe666/forge/createdir"
+	"github.com/skarekroe666/forge/createfile"
+)
 
 func main() {
-	log.Println("forge this")
+	input := createfile.FileContent("main", "example")
+
+	file := createfile.File{
+		Title:   "test",
+		Content: input,
+	}
+	file.CreateFile()
+
+	createdir.MakeDir()
 }
