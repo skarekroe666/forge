@@ -1,18 +1,19 @@
-package createfile
+package makefile
 
 import (
+	"errors"
 	"fmt"
 	"os"
 )
 
-type File struct {
-	Title   string
-	Content string
-}
+func CreateFile(title, content string) error {
+	fileName := title + ".go"
+	err := os.WriteFile(fileName, []byte(content), 0644)
+	if err != nil {
+		return errors.New("failed to write to the file")
+	}
 
-func (f *File) CreateFile() error {
-	fileName := f.Title + ".go"
-	return os.WriteFile(fileName, []byte(f.Content), 0644)
+	return nil
 }
 
 func FileContent(pkgName, funcName string) string {
